@@ -102,11 +102,8 @@ export const downloadPDF = async ({ title, content, type }: PDFContent) => {
           const priorityText = point.tnpscPriority ? ` [${point.tnpscPriority.toUpperCase()} Priority]` : '';
           addWrappedText(`${pointIndex + 1}. ${point.title}${priorityText}`, margin + 5, 12, 'bold');
           addWrappedText(point.description, margin + 10, 11, 'normal');
-          if (point.tnpscRelevance) {
-            addWrappedText(`TNPSC Context: ${point.tnpscRelevance}`, margin + 10, 10, 'italic');
-          }
           if (point.memoryTip) {
-            addWrappedText(`💡 Memory Tip: ${point.memoryTip}`, margin + 10, 10, 'italic');
+            addWrappedText(`🧠 Memory Tip: ${point.memoryTip}`, margin + 10, 10, 'italic');
           }
           yPosition += 5;
         });

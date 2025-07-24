@@ -26,7 +26,7 @@ interface PageAnalysis {
     title: string;
     description: string;
     importance: "high" | "medium" | "low";
-    tnpscRelevance: string;
+    memoryTip: string;
   }>;
   summary: string;
   tnpscRelevance: string;
@@ -312,10 +312,10 @@ const ComprehensivePdfResults = ({
                             </Badge>
                           </div>
                           <p className="text-gray-600 text-sm mb-2">{point.description}</p>
-                          {point.tnpscRelevance && (
-                            <div className="bg-blue-50 p-3 rounded border-l-2 border-blue-400">
-                              <p className="text-xs text-blue-700 font-medium mb-1">TNPSC Relevance:</p>
-                              <p className="text-xs text-blue-600">{point.tnpscRelevance}</p>
+                          {point.memoryTip && (
+                            <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-3 rounded-lg border-l-4 border-blue-400">
+                              <p className="text-xs text-blue-700 font-medium mb-1">🧠 Memory Tip:</p>
+                              <p className="text-xs text-blue-600">{point.memoryTip}</p>
                             </div>
                           )}
                         </div>

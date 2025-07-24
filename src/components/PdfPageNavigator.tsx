@@ -31,7 +31,7 @@ interface PageAnalysis {
     title: string;
     description: string;
     importance: "high" | "medium" | "low";
-    tnpscRelevance: string;
+    memoryTip: string;
   }>;
   summary: string;
   tnpscRelevance: string;
@@ -679,9 +679,9 @@ export const PdfPageNavigator = ({
                             </Badge>
                           </div>
                           <p className="text-gray-700 mb-2">{point.description}</p>
-                          {point.tnpscRelevance && (
-                            <p className="text-sm text-purple-700 bg-purple-50 p-2 rounded">
-                              <strong>TNPSC Context:</strong> {point.tnpscRelevance}
+                          {point.memoryTip && (
+                            <p className="text-sm text-blue-700 bg-gradient-to-r from-blue-50 to-cyan-50 p-3 rounded-lg border-l-4 border-blue-400">
+                              <strong>🧠 Memory Tip:</strong> {point.memoryTip}
                             </p>
                           )}
                         </div>
@@ -803,6 +803,3 @@ export const PdfPageNavigator = ({
     </div>
   );
 };
-
-// FIX: Removed the 'export default' line from the end
-// export default PdfPageNavigator;

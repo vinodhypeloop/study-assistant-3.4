@@ -25,9 +25,8 @@ export interface StudyHistoryRecord {
     keyPoints: string[];
     studyPoints: any[];
     summary: string;
-    tnpscRelevance: string;
-    tnpscCategories: string[];
     mainTopic: string;
+    tnpscCategories: string[];
   };
   quizData?: {
     questions: any[];
@@ -100,9 +99,8 @@ export const saveStudyHistory = async (
         keyPoints: analysis.keyPoints || [],
         studyPoints: analysis.studyPoints || [],
         summary: analysis.summary || '',
-        tnpscRelevance: analysis.tnpscRelevance || '',
-        tnpscCategories: analysis.tnpscCategories || [],
-        mainTopic: analysis.mainTopic || options.fileName || 'Study Material'
+        mainTopic: analysis.mainTopic || options.fileName || 'Study Material',
+        tnpscCategories: analysis.tnpscCategories || []
       };
     } else if (type === "quiz") {
       // Store quiz data with answers

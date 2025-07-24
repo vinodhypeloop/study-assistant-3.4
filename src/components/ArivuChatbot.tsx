@@ -23,7 +23,7 @@ const ArivuChatbot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      content: "Hello! I'm Arivu, your AI assistant. I can help you with TNPSC studies, answer general questions, solve math problems, and analyze images or documents. How can I assist you today?",
+      content: "Hello! I'm Arivu, your intelligent study companion. I have access to your complete study history and can provide personalized guidance. I can help with TNPSC preparation, connect your current questions to previously studied materials, suggest study strategies based on your performance, and much more. What would you like to explore today?",
       sender: "arivu",
       timestamp: new Date()
     }
@@ -41,14 +41,14 @@ const ArivuChatbot = () => {
     if (language === "tamil") {
       setMessages(prev => prev.length === 1 ? [{
         id: "1",
-        content: "வணக்கம்! நான் அறிவு, உங்கள் AI உதவியாளர். நான் தமிழ்நாடு பொதுச் சேவை ஆணையம் படிப்பு, பொதுக் கேள்விகள், கணித சிக்கல்கள், மற்றும் படங்கள் அல்லது ஆவணங்களை பகுப்பாய்வு செய்ய உதவ முடியும். இன்று நான் உங்களுக்கு எப்படி உதவ முடியும்?",
+        content: "வணக்கம்! நான் அறிவு, உங்கள் புத்திசாலி படிப்பு துணைவன். உங்கள் முழு படிப்பு வரலாறும் எனக்குத் தெரியும், தனிப்பட்ட வழிகாட்டுதல் வழங்க முடியும். தமிழ்நாடு பொதுச் சேவை ஆணையம் தயாரிப்பு, முன்பு படித்த பொருட்களுடன் தற்போதைய கேள்விகளை இணைத்தல், உங்கள் செயல்திறனின் அடிப்படையில் படிப்பு உத்திகளை பரிந்துரைத்தல் மற்றும் பல விஷயங்களில் உதவ முடியும். இன்று நீங்கள் என்ன ஆராய விரும்புகிறீர்கள்?",
         sender: "arivu",
         timestamp: new Date()
       }] : prev);
     } else {
       setMessages(prev => prev.length === 1 ? [{
         id: "1",
-        content: "Hello! I'm Arivu, your AI assistant. I can help you with TNPSC studies, answer general questions, solve math problems, and analyze images or documents. How can I assist you today?",
+        content: "Hello! I'm Arivu, your intelligent study companion. I have access to your complete study history and can provide personalized guidance. I can help with TNPSC preparation, connect your current questions to previously studied materials, suggest study strategies based on your performance, and much more. What would you like to explore today?",
         sender: "arivu",
         timestamp: new Date()
       }] : prev);
