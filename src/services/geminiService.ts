@@ -30,9 +30,7 @@ Please provide a comprehensive analysis in the following JSON format:
       "title": "Key point title",
       "description": "Detailed description",
       "importance": "high/medium/low",
-      "tnpscRelevance": "TNPSC relevance explanation",
-      "tnpscPriority": "high/medium/low",
-      "memoryTip": "Easy memory tip for students"
+      "memoryTip": "Creative and memorable tip using mnemonics, visual associations, stories, or patterns that make this information stick in memory permanently"
     }
   ],
   "keyPoints": ["Specific factual point 1", "Specific factual point 2", ...],
@@ -50,6 +48,13 @@ Focus on:
 - Application in exam context
 - Make key points factual and specific from the actual content
 - Provide creative memory tips using mnemonics, associations, or patterns
+
+MEMORY TIP GUIDELINES:
+- Use acronyms, rhymes, visual imagery, or story-based associations
+- Connect facts to familiar concepts or create memorable patterns
+- Use number patterns, word associations, or logical sequences
+- Make tips fun, quirky, and unforgettable
+- Examples: "Remember VIBGYOR for rainbow colors" or "My Very Educated Mother Just Served Us Nachos for planets"
 `;
 
     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`, {
@@ -283,7 +288,15 @@ CRITICAL INSTRUCTIONS:
   "keyPoints": ["Specific factual point 1", "Specific factual point 2", ...],
   "summary": "Brief summary of the page content",
   "importance": "high/medium/low",
-  "tnpscRelevance": "How this content relates to TNPSC exams"
+  "tnpscRelevance": "How this content relates to TNPSC exams",
+  "studyPoints": [
+    {
+      "title": "Study point title",
+      "description": "Detailed description",
+      "importance": "high/medium/low",
+      "memoryTip": "Creative and memorable tip using mnemonics, visual associations, stories, or patterns"
+    }
+  ]
 }
 
 Focus on:
@@ -415,7 +428,7 @@ CRITICAL INSTRUCTIONS:
       "title": "Study point title",
       "description": "Detailed description",
       "importance": "high/medium/low",
-      "tnpscRelevance": "TNPSC relevance explanation"
+          "memoryTip": "Creative and memorable tip using mnemonics, visual associations, stories, or patterns"
     }
   ],
   "summary": "Brief summary of the page content",
@@ -428,6 +441,13 @@ Focus on:
 - TNPSC exam relevance
 - Important facts and concepts
 - Key information for study
+- Provide excellent memory tips for each study point
+
+MEMORY TIP GUIDELINES:
+- Use acronyms, rhymes, visual imagery, or story-based associations
+- Connect facts to familiar concepts or create memorable patterns
+- Use number patterns, word associations, or logical sequences
+- Make tips fun, quirky, and unforgettable
 `;
 
         try {
@@ -534,9 +554,7 @@ CRITICAL INSTRUCTIONS:
       "title": "Key point title",
       "description": "Detailed description",
       "importance": "high/medium/low",
-      "tnpscRelevance": "TNPSC relevance explanation",
-      "tnpscPriority": "high/medium/low",
-      "memoryTip": "Easy memory tip for students"
+      "memoryTip": "Creative and memorable tip using mnemonics, visual associations, stories, or patterns that make this information stick in memory permanently"
     }
   ],
   "keyPoints": ["Specific factual point 1", "Specific factual point 2", ...],
@@ -554,6 +572,13 @@ Focus on:
 - Application in exam context
 - Make key points factual and specific from the actual content
 - Provide creative memory tips using mnemonics, associations, or patterns
+
+MEMORY TIP GUIDELINES:
+- Use acronyms, rhymes, visual imagery, or story-based associations
+- Connect facts to familiar concepts or create memorable patterns
+- Use number patterns, word associations, or logical sequences
+- Make tips fun, quirky, and unforgettable
+- Examples: "Remember VIBGYOR for rainbow colors" or "My Very Educated Mother Just Served Us Nachos for planets"
 `;
 
     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`, {
@@ -643,8 +668,7 @@ Please provide detailed analysis in JSON format:
       "title": "Study point title",
       "description": "Detailed description",
       "importance": "high/medium/low",
-      "tnpscRelevance": "TNPSC relevance explanation",
-      "memoryTip": "Easy memory tip for students"
+      "memoryTip": "Creative and memorable tip using mnemonics, visual associations, stories, or patterns that make this information stick in memory permanently"
   "keyPoints": ["Specific factual point 1", "Specific factual point 2", ...],
   ],
   "summary": "Brief summary of the page content",
@@ -657,10 +681,24 @@ Focus on:
 - Specific facts, names, dates, and concrete information
 - Key information for study
 - Make key points factual and specific from the actual content
+- Provide excellent memory tips for each study point
+
+MEMORY TIP GUIDELINES:
+- Use acronyms, rhymes, visual imagery, or story-based associations
+- Connect facts to familiar concepts or create memorable patterns
+- Use number patterns, word associations, or logical sequences
+- Make tips fun, quirky, and unforgettable
 - Definitions and explanations
 - Statistical data and figures
 - Historical context and significance
 - Provide creative memory tips using mnemonics, associations, or patterns
+
+MEMORY TIP GUIDELINES:
+- Use acronyms, rhymes, visual imagery, or story-based associations
+- Connect facts to familiar concepts or create memorable patterns
+- Use number patterns, word associations, or logical sequences
+- Make tips fun, quirky, and unforgettable
+- Examples: "Remember VIBGYOR for rainbow colors" or "My Very Educated Mother Just Served Us Nachos for planets"
 `;
 
     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`, {

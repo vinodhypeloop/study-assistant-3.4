@@ -60,12 +60,61 @@ const ArivuChatbot = () => {
     
     try {
       const history = await getStudyHistory(user.uid);
-      const recentHistory = history.slice(0, 5);
-      const historyText = recentHistory.map(record => 
-        `${record.type}: ${record.fileName || 'Study session'} - ${record.difficulty} level`
-      ).join('\n');
+      const recentHistory = history.slice(0, 10); // Get more history for better context
       
-      return historyText;
+      // Create comprehensive study context
+      const analysisRecords = recentHistory.filter(h => h.type === "analysis");
+      const quizRecords = recentHistory.filter(h => h.type === "quiz");
+      
+      let contextText = "";
+      
+      if (analysisRecords.length > 0) {
+        contextText += "RECENT STUDY MATERIALS:\n";
+        analysisRecords.slice(0, 5).forEach((record, index) => {
+          if (record.analysisData) {
+            contextText += `${index + 1}. ${record.fileName || 'Study Material'}\n`;
+            contextText += `   Key Topics: ${record.analysisData.keyPoints?.slice(0, 3).join(', ') || 'N/A'}\n`;
+            contextText += `   Summary: ${record.analysisData.summary?.substring(0, 100) || 'N/A'}...\n`;
+            if (record.analysisData.studyPoints?.length > 0) {
+              contextText += `   Study Points: ${record.analysisData.studyPoints.slice(0, 2).map(p => p.title).join(', ')}\n`;
+            }
+          }
+        });
+        contextText += "\n";
+      }
+      
+      if (quizRecords.length > 0) {
+        contextText += "RECENT QUIZ PERFORMANCE:\n";
+        quizRecords.slice(0, 3).forEach((record, index) => {
+          contextText += `${index + 1}. ${record.fileName || 'Quiz'} - Score: ${record.score}/${record.totalQuestions} (${record.percentage}%)\n`;
+          contextText += `   Difficulty: ${record.difficulty}, Language: ${record.language}\n`;
+        });
+        
+        // Calculate average performance
+        const avgScore = Math.round(quizRecords.reduce((acc, h) => acc + (h.percentage || 0), 0) / quizRecords.length);
+        contextText += `   Average Performance: ${avgScore}%\n\n`;
+      }
+      
+      // Add study patterns and suggestions
+      if (recentHistory.length > 0) {
+        const recentTopics = analysisRecords
+          .map(r => r.analysisData?.mainTopic || r.fileName)
+          .filter(Boolean)
+          .slice(0, 5);
+        
+        if (recentTopics.length > 0) {
+          contextText += `RECENT STUDY FOCUS: ${recentTopics.join(', ')}\n`;
+        }
+        
+        // Add performance insights
+        if (quizRecords.length >= 2) {
+          const recentPerformance = quizRecords.slice(0, 3).map(q => q.percentage || 0);
+          const trend = recentPerformance[0] > recentPerformance[1] ? "improving" : "needs attention";
+          contextText += `PERFORMANCE TREND: ${trend}\n`;
+        }
+      }
+      
+      return contextText;
     } catch (error) {
       console.error("Error fetching study history:", error);
       return "";
@@ -126,7 +175,8 @@ const ArivuChatbot = () => {
         ? "Please respond in Tamil language using Tamil script."
         : "Please respond in English language.";
 
-      let prompt = `You are 'Arivu', a friendly and highly knowledgeable AI assistant. You can help with a wide variety of topics including:
+      // Enhanced context-aware prompt
+      let prompt = `You are 'Arivu', an intelligent AI study companion with deep knowledge of the user's learning journey. You can help with:
 
 1. TNPSC (Tamil Nadu Public Service Commission) exam preparation - your primary expertise
 2. General knowledge and current affairs
@@ -136,21 +186,39 @@ const ArivuChatbot = () => {
 6. Analysis of uploaded documents and images
 7. Any other questions users might have
 
-Your approach:
+INTELLIGENT FEATURES:
+- You have access to the user's complete study history and can reference previous materials
+- You can suggest connections between current questions and previously studied topics
+- You can provide personalized study recommendations based on past performance
+- You can identify knowledge gaps and suggest focused study areas
+- You proactively offer relevant suggestions from the user's study database
+
+RESPONSE APPROACH:
 - Be helpful, accurate, and conversational
-- For TNPSC topics, focus on exam-relevant content
-- For general questions, provide clear and comprehensive answers
-- When analyzing images or documents, provide detailed explanations
+- ALWAYS check if the question relates to previously studied materials and mention connections
+- Proactively suggest related topics from the user's study history when relevant
+- For TNPSC topics, provide exam-focused content with memory tips
+- When users ask general questions, check if they've studied related topics before
 - Always be encouraging and supportive
 - ${languageInstruction}
-- If you don't know something, admit it honestly
+- Provide excellent memory tips and study strategies
+- If you notice patterns in their study history, mention them helpfully
 
-${studyHistory ? `User's recent study history:\n${studyHistory}\n` : ''}
+${studyHistory ? `USER'S STUDY CONTEXT:\n${studyHistory}\n` : 'No previous study history available.\n'}
+
+PROACTIVE SUGGESTIONS:
+- If the user asks about any topic, immediately check if they've studied related materials before
+- Suggest connections: "I see you previously studied [topic], which connects to this because..."
+- Offer study tips: "Based on your quiz performance in [subject], I recommend focusing on..."
+- Provide memory aids: "Here's a great memory tip for this concept..."
+- Reference past materials: "This relates to the [document] you analyzed earlier..."
 
 Conversation history:
 ${conversationHistory}
 
-User's new message: ${inputMessage}`;
+User's new message: ${inputMessage}
+
+Remember: Be proactive in connecting current questions to the user's study history and offer relevant suggestions!`;
 
       const requestBody: any = {
         contents: [

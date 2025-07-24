@@ -39,8 +39,6 @@ export interface StudyPoint {
   title: string;
   description: string;
   importance: "high" | "medium" | "low";
-  tnpscRelevance?: string;
-  tnpscPriority?: "high" | "medium" | "low";
   memoryTip?: string;
 }
 

@@ -188,17 +188,10 @@ const AnalysisResults = ({
             </Card>
           )}
 
-          {/* TNPSC Relevance */}
-          {result.tnpscRelevance && (
-            <Card className="glass-card p-4 md:p-6 bg-gradient-to-r from-purple-50 to-blue-50 animate-fadeInUp hover-lift" style={{animationDelay: '0.3s'}}>
-              <h3 className="text-lg font-semibold gradient-text mb-4">TNPSC Relevance</h3>
-              <p className="text-gray-700 leading-relaxed">{result.tnpscRelevance}</p>
-            </Card>
-          )}
 
           {/* Study Points */}
           {result.studyPoints && result.studyPoints.length > 0 && (
-            <Card className="glass-card p-4 md:p-6 animate-fadeInUp hover-lift" style={{animationDelay: '0.4s'}}>
+            <Card className="glass-card p-4 md:p-6 animate-fadeInUp hover-lift" style={{animationDelay: '0.3s'}}>
               <h3 className="text-lg font-semibold gradient-text mb-4">Study Points</h3>
               <div className="space-y-4">
                 {result.studyPoints.map((point, index) => (
@@ -217,30 +210,12 @@ const AnalysisResults = ({
                         >
                           {point.importance} priority
                         </Badge>
-                        {point.tnpscPriority && (
-                          <Badge 
-                            className={
-                              point.tnpscPriority === 'high' 
-                                ? 'bg-gradient-to-r from-red-500 to-pink-600 text-white' 
-                                : point.tnpscPriority === 'medium'
-                                ? 'bg-gradient-to-r from-yellow-500 to-orange-600 text-white'
-                                : 'bg-gradient-to-r from-green-500 to-emerald-600 text-white'
-                            }
-                          >
-                            TNPSC {point.tnpscPriority}
-                          </Badge>
-                        )}
                       </div>
                     </div>
                     <p className="text-gray-700 mb-2">{point.description}</p>
-                    {point.tnpscRelevance && (
-                      <p className="text-sm text-purple-700 bg-gradient-to-r from-purple-50 to-indigo-50 p-2 rounded-lg">
-                        <strong>TNPSC Context:</strong> {point.tnpscRelevance}
-                      </p>
-                    )}
                     {point.memoryTip && (
-                      <p className="text-sm text-green-700 bg-gradient-to-r from-green-50 to-emerald-50 p-2 rounded-lg mt-2">
-                        <strong>💡 Memory Tip:</strong> {point.memoryTip}
+                      <p className="text-sm text-blue-700 bg-gradient-to-r from-blue-50 to-cyan-50 p-3 rounded-lg mt-2 border-l-4 border-blue-400">
+                        <strong>🧠 Memory Tip:</strong> {point.memoryTip}
                       </p>
                     )}
                   </div>
@@ -251,7 +226,7 @@ const AnalysisResults = ({
 
           {/* TNPSC Categories */}
           {result.tnpscCategories && result.tnpscCategories.length > 0 && (
-            <Card className="glass-card p-4 md:p-6 animate-fadeInUp hover-lift" style={{animationDelay: '0.5s'}}>
+            <Card className="glass-card p-4 md:p-6 animate-fadeInUp hover-lift" style={{animationDelay: '0.4s'}}>
               <h3 className="text-lg font-semibold gradient-text mb-4">TNPSC Categories</h3>
               <div className="flex flex-wrap gap-2">
                 {result.tnpscCategories.map((category, index) => (
